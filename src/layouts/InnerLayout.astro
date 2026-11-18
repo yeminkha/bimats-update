@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <header>
+    <nav>
+      <a class="logo"><img src="/images/icons/bim-logo.png" alt=""></a>
+      <div class="links">
+        <a href="/">IT SERVICE</a><a href="/service">SOLUTIONS</a><a href="/#projects"
+          >PARTNERS</a
+        ><a href="/#about">ABOUT US</a>
+        
+      </div>
+      <a href="/#contact" class="contact-me btn-solid">Contact us</a>
+    </nav>
+  </header>
+  <main>
+    <slot/>
+  </main>
+  
+  <footer> 
+    <div class="container">
+      <div class="copy-right">
+        Copyright © 2025 IT Companyo. All Rights Reserved.
+      </div>
+      <div class="teams">
+        User Terms & Conditions | Privacy Policy
+      </div>
+    </div>
+  </footer>
+</Layout>
+

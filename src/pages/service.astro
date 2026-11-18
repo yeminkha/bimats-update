@@ -1,0 +1,22 @@
+---
+import  InnerLayout from "../layouts/InnerLayout.astro";
+import  WhyChooseUs  from "../components/Why-choose-us.astro";
+import Contact from "../components/Contact.astro";
+import  Connect  from "../components/Connect.astro";
+import Service from "../components/Service.astro";
+import  Carousel  from "../components/Carousel.astro";
+---
+<InnerLayout>
+    <div class="home service-home">
+        <div class="container">
+            <h1>Services</h1>
+            <p>Home / <a href="/service-details">Service Details</a></p>
+        </div>
+    </div>
+    <Service/>
+    <Carousel/>
+    <WhyChooseUs/>
+    <Carousel/>
+    <Contact/>
+    <Connect/>
+</InnerLayout>
