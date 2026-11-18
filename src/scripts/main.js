@@ -100,3 +100,50 @@ document.querySelectorAll(".partner .carousel").forEach(carousel => {
   calculateWidth();
   requestAnimationFrame(animate);
 });
+
+const homeSection = document.querySelector(".home");
+const homeInner = document.querySelector(".home .container-inner");
+
+const homeObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        homeInner.classList.remove("animate");
+
+        // Force animation restart
+        void homeInner.offsetWidth;
+
+        homeInner.classList.add("animate");
+      } else {
+        homeInner.classList.remove("animate");
+      }
+    });
+  },
+  {
+    threshold: 0.2,
+  }
+);
+
+if (homeSection && homeInner) {
+  homeObserver.observe(homeSection);
+}
+const containers = document.querySelectorAll("section .container");
+
+const containerObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate");
+      } else {
+        entry.target.classList.remove("animate");
+      }
+    });
+  },
+  {
+    threshold: 0.2,
+  }
+);
+
+containers.forEach((container) => {
+  containerObserver.observe(container);
+});
