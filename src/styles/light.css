@@ -826,6 +826,96 @@ main {
 .blogs .icon-container p {
   margin-top: 10px;
 }
+
+/* animation */
+/* ===== Work process: step-by-step sequence ===== */
+
+/* Each step = icon → number → text → line, 1.5s per step */
+.blogs .icon-stage > .icon-container:nth-of-type(1) { --s: 0; }
+.blogs .icon-stage > .icon-container:nth-of-type(2) { --s: 1; }
+.blogs .icon-stage > .icon-container:nth-of-type(3) { --s: 2; }
+.blogs .icon-stage > .icon-container:nth-of-type(4) { --s: 3; }
+
+.blogs .icon-stage > hr:nth-of-type(1) { --s: 0; }
+.blogs .icon-stage > hr:nth-of-type(2) { --s: 1; }
+.blogs .icon-stage > hr:nth-of-type(3) { --s: 2; }
+
+/* ---------- Hidden state (also where it returns to when you leave) ---------- */
+
+/* 1. Icon circle slides up */
+.blogs .icon-container {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* 2. Number badge pops in */
+.blogs .icon-container .num {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* 3. Text fades up */
+.blogs .icon-container .para {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* 4. Line grows from 0 to its full width (scaleX, so the layout never shifts) */
+.blogs hr {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s ease;
+}
+
+/* ---------- Visible state: runs in order, one step after another ---------- */
+
+.blogs .container.animate .icon-container {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.6s ease,
+    transform 0.7s cubic-bezier(0.34, 1.4, 0.64, 1);
+  transition-delay: calc(var(--s) * 1.5s), calc(var(--s) * 1.5s);
+}
+
+.blogs .container.animate .icon-container .num {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.3s ease,
+    transform 0.5s cubic-bezier(0.34, 1.8, 0.64, 1);
+  transition-delay: calc(var(--s) * 1.5s + 0.45s), calc(var(--s) * 1.5s + 0.45s);
+}
+
+.blogs .container.animate .icon-container .para {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--s) * 1.5s + 0.75s), calc(var(--s) * 1.5s + 0.75s);
+}
+
+.blogs .container.animate hr {
+  transform: scaleX(1);
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  transition-delay: calc(var(--s) * 1.5s + 1s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blogs .icon-container,
+  .blogs .icon-container .num,
+  .blogs .icon-container .para,
+  .blogs hr {
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+}
+
 .choose-us {
   width: 100%;
 }
