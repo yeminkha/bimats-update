@@ -21,6 +21,7 @@ body::-webkit-scrollbar {
 }
 p {
   color: #24332b;
+  font-size: 15px;
 }
 h1,
 h2,
@@ -83,10 +84,239 @@ nav .links {
   gap: 20px;
   align-items: center;
 }
+
+nav .item {
+  position: relative;
+}
+
+/* Top-level link + animated chevron on items that have a dropdown */
+nav .item > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0;
+  position: relative;
+}
+nav .item.has-drop > a::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+nav .item.has-drop:hover > a::after,
+nav .item.has-drop:focus-within > a::after {
+  transform: translateY(1px) rotate(225deg);
+}
+
+/* Underline that draws in under the top-level link */
+nav .item > a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  width: 100%;
+  height: 2px;
+  background: var(--dark-blue--);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+nav .item:hover > a::before,
+nav .item:focus-within > a::before {
+  transform: scaleX(1);
+}
+
+/* ===== Dropdown panel ===== */
+nav .dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #dbe3ef;
+  border-radius: 14px;
+  box-shadow: 0 24px 50px -20px rgba(10, 31, 68, 0.45);
+  z-index: 60;
+
+  /* Hidden state */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(14px) scale(0.97);
+  transform-origin: top left;
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.35s; /* stays visible until the fade-out finishes */
+}
+
+/* Invisible bridge so the dropdown doesn't close while the mouse crosses the gap */
+nav .dropdown::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12px;
+  height: 12px;
+}
+
+/* Little arrow pointing at the link */
+nav .dropdown::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 22px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-left: 1px solid #dbe3ef;
+  border-top: 1px solid #dbe3ef;
+  transform: rotate(45deg);
+}
+
+/* Show on hover or keyboard focus */
+nav .item:hover > .dropdown,
+nav .item:focus-within > .dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* ===== Dropdown links: slide in one after another ===== */
+nav .dropdown a {
+  position: relative;
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  color: inherit;
+
+  opacity: 0;
+  transform: translateX(-12px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.2s,
+    color 0.2s,
+    padding-left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+nav .item:hover .dropdown a,
+nav .item:focus-within .dropdown a {
+  opacity: 1;
+  transform: none;
+  transition-delay:
+    calc(var(--n, 0) * 30ms + 80ms), calc(var(--n, 0) * 30ms + 80ms), 0s, 0s, 0s;
+}
+nav .dropdown a:nth-child(1) {
+  --n: 0;
+}
+nav .dropdown a:nth-child(2) {
+  --n: 1;
+}
+nav .dropdown a:nth-child(3) {
+  --n: 2;
+}
+nav .dropdown a:nth-child(4) {
+  --n: 3;
+}
+nav .dropdown a:nth-child(5) {
+  --n: 4;
+}
+nav .dropdown a:nth-child(6) {
+  --n: 5;
+}
+nav .dropdown a:nth-child(7) {
+  --n: 6;
+}
+nav .dropdown a:nth-child(8) {
+  --n: 7;
+}
+nav .dropdown a:nth-child(9) {
+  --n: 8;
+}
+nav .dropdown a:nth-child(10) {
+  --n: 9;
+}
+nav .dropdown a:nth-child(11) {
+  --n: 10;
+}
+nav .dropdown a:nth-child(12) {
+  --n: 11;
+}
+
+/* Hover on an individual link: tint, nudge right, orange bar on the left */
+nav .dropdown a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--gold--);
+  transform: scaleY(0);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+nav .dropdown a:hover,
+nav .dropdown a:focus-visible {
+  background: #f3f6fb;
+  color: var(--gold--);
+  padding-left: 22px;
+  transition-delay: 0s;
+}
+nav .dropdown a:hover::before,
+nav .dropdown a:focus-visible::before {
+  transform: scaleY(1);
+}
+nav .dropdown a.active {
+  color: var(--accent, #f58220);
+  font-weight: 600;
+}
+nav .dropdown a.active::before {
+  transform: scaleY(1);
+}
+
+/* ===== Layout tweaks ===== */
+/* The IT service list has 12 items, so show it in two columns */
+nav .dropdown1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 520px;
+}
+
+/* Keep the last dropdown inside the screen: open it to the left */
+nav .links > .item:last-child .dropdown {
+  left: auto;
+  right: 0;
+  transform-origin: top right;
+}
+nav .links > .item:last-child .dropdown::after {
+  left: auto;
+  right: 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  nav .dropdown,
+  nav .dropdown a {
+    transition:
+      opacity 0.01ms,
+      visibility 0s !important;
+    transform: none !important;
+  }
+}
 a:hover {
   color: var(--main--);
 }
-
 
 section .container {
   opacity: 0;
@@ -110,7 +340,6 @@ section .container.animate {
     transform: translateY(0);
   }
 }
-
 
 nav .links a {
   display: flex;
@@ -186,7 +415,6 @@ main {
   background-repeat: no-repeat;
 }
 .home .container {
-
   width: 1280px;
   margin: 0 auto;
   padding: 100px 0;
@@ -231,8 +459,10 @@ main {
 }
 .slider {
   width: 100%;
+  max-width: 100vw;
+  min-width: 0;
   overflow: hidden;
-    background: linear-gradient(
+  background: linear-gradient(
     90deg,
     #f8fbf9 0%,
     #f3f8f4 35%,
@@ -242,9 +472,11 @@ main {
 }
 
 .slider .container {
-  max-width: 1280px;
-  width: 100%;
+width: 100%;
+  max-width: min(1280px, 100%);
+  min-width: 0;
   margin: 0 auto;
+  overflow: hidden;
   background: linear-gradient(135deg, #009456 0%, #007a42 50%, #005c33 100%);
 }
 
@@ -299,7 +531,7 @@ main {
 
 .about {
   width: 100%;
-    background: linear-gradient(
+  background: linear-gradient(
     90deg,
     #f8fbf9 0%,
     #f3f8f4 35%,
@@ -308,11 +540,10 @@ main {
   );
 }
 .about .container {
-    overflow: hidden;
+  overflow: hidden;
   max-width: 1280px;
   margin: 0 auto;
   position: relative;
-
 }
 .about .bg-text {
   position: absolute;
@@ -323,8 +554,6 @@ main {
   -webkit-text-stroke: 2px rgba(0, 70, 38, 0.1);
   text-wrap: nowrap;
 }
-
-
 
 .about .container-inner {
   display: flex;
@@ -347,7 +576,6 @@ main {
 }
 .about p {
   text-align: justify;
-  font-size: 12px;
 }
 .about img {
   width: 100%;
@@ -394,14 +622,18 @@ main {
 .service {
   width: 100%;
   position: relative;
-    background:
-    linear-gradient(90deg, #f8fbf9 0%, #f3f8f4 35%, #edf5ef 70%, #e8f1eb 100%);
+  background: linear-gradient(
+    90deg,
+    #f8fbf9 0%,
+    #f3f8f4 35%,
+    #edf5ef 70%,
+    #e8f1eb 100%
+  );
 }
 .service .container {
   position: relative;
   isolation: isolate;
 }
-
 
 /* .service .container::before,
 .service .container::after {
@@ -605,7 +837,7 @@ main {
   padding: 1.75rem;
   border-radius: 16px;
   background: #fff;
-  border: 1px solid var(--line, #dbe3ef);
+  /* border: 1px solid var(--dark-blue--); */
   overflow: hidden;
   isolation: isolate;
 
@@ -631,13 +863,24 @@ main {
   transition-delay: calc(var(--i) * 110ms), calc(var(--i) * 110ms), 0s, 0s;
 }
 
-.service .card:nth-child(1) { --i: 0; }
-.service .card:nth-child(2) { --i: 1; }
-.service .card:nth-child(3) { --i: 2; }
-.service .card:nth-child(4) { --i: 3; }
-.service .card:nth-child(5) { --i: 4; }
-.service .card:nth-child(6) { --i: 5; }
-
+.service .card:nth-child(1) {
+  --i: 0;
+}
+.service .card:nth-child(2) {
+  --i: 1;
+}
+.service .card:nth-child(3) {
+  --i: 2;
+}
+.service .card:nth-child(4) {
+  --i: 3;
+}
+.service .card:nth-child(5) {
+  --i: 4;
+}
+.service .card:nth-child(6) {
+  --i: 5;
+}
 
 /* Accent line that draws across the top */
 .service .card::after {
@@ -660,8 +903,6 @@ main {
   margin-bottom: 1rem;
 }
 
-
-
 /* "Learn more" with an arrow that slides out */
 .service .card > a {
   align-self: flex-start;
@@ -669,8 +910,10 @@ main {
   align-items: center;
   gap: 0.4rem;
   font-weight: 600;
-  color: var(--blue, #1565c0);
-  transition: color 0.3s, gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  color: var(--dark-blue--);
+  transition:
+    color 0.3s,
+    gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .service .card > a::after {
@@ -688,9 +931,12 @@ main {
     transition-delay: 0s; /* don't wait for the stagger delay on hover */
   }
 
-  .service .card:hover::before { transform: none; }
-  .service .card:hover::after { transform: scaleX(1); }
-
+  .service .card:hover::before {
+    transform: none;
+  }
+  .service .card:hover::after {
+    transform: scaleX(1);
+  }
 
   /* Turns a dark icon white. Remove this line if your icons are already coloured/white. */
   .service .card:hover .icon-container img {
@@ -699,24 +945,36 @@ main {
   }
 
   .service .card:hover > a {
-    color: #fff;
     gap: 0.8rem;
   }
-  .service .card:hover > a::after { transform: translateX(4px); }
+  .service .card:hover > a::after {
+    transform: translateX(4px);
+  }
 }
-
 
 /* ===== Responsive ===== */
 @media (max-width: 1000px) {
-  .service .cards-container { grid-template-columns: repeat(2, 1fr); }
+  .service .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
   /* With two columns, stagger by row position instead of 6 steps */
-  .service .card:nth-child(n) { --i: 0; }
-  .service .card:nth-child(2n) { --i: 1; }
-  .service .card:nth-child(n + 3) { margin-top: 0; }
+  .service .card:nth-child(n) {
+    --i: 0;
+  }
+  .service .card:nth-child(2n) {
+    --i: 1;
+  }
+  .service .card:nth-child(n + 3) {
+    margin-top: 0;
+  }
 }
 @media (max-width: 640px) {
-  .service .cards-container { grid-template-columns: 1fr; }
-  .service .card:nth-child(n) { --i: 0; }
+  .service .cards-container {
+    grid-template-columns: 1fr;
+  }
+  .service .card:nth-child(n) {
+    --i: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -726,12 +984,14 @@ main {
     transform: none;
     transition-delay: 0s;
   }
-  .service .card:hover { transform: none; }
+  .service .card:hover {
+    transform: none;
+  }
 }
 
 .blogs {
   width: 100%;
-    background: linear-gradient(
+  background: linear-gradient(
     90deg,
     #f8fbf9 0%,
     #f3f8f4 35%,
@@ -820,7 +1080,7 @@ main {
 }
 .blogs .icon-container .para {
   position: absolute;
-  bottom: -100px;
+  top: 130px;
   width: 250px;
 }
 .blogs .icon-container p {
@@ -831,14 +1091,28 @@ main {
 /* ===== Work process: step-by-step sequence ===== */
 
 /* Each step = icon → number → text → line, 1.5s per step */
-.blogs .icon-stage > .icon-container:nth-of-type(1) { --s: 0; }
-.blogs .icon-stage > .icon-container:nth-of-type(2) { --s: 1; }
-.blogs .icon-stage > .icon-container:nth-of-type(3) { --s: 2; }
-.blogs .icon-stage > .icon-container:nth-of-type(4) { --s: 3; }
+.blogs .icon-stage > .icon-container:nth-of-type(1) {
+  --s: 0;
+}
+.blogs .icon-stage > .icon-container:nth-of-type(2) {
+  --s: 1;
+}
+.blogs .icon-stage > .icon-container:nth-of-type(3) {
+  --s: 2;
+}
+.blogs .icon-stage > .icon-container:nth-of-type(4) {
+  --s: 3;
+}
 
-.blogs .icon-stage > hr:nth-of-type(1) { --s: 0; }
-.blogs .icon-stage > hr:nth-of-type(2) { --s: 1; }
-.blogs .icon-stage > hr:nth-of-type(3) { --s: 2; }
+.blogs .icon-stage > hr:nth-of-type(1) {
+  --s: 0;
+}
+.blogs .icon-stage > hr:nth-of-type(2) {
+  --s: 1;
+}
+.blogs .icon-stage > hr:nth-of-type(3) {
+  --s: 2;
+}
 
 /* ---------- Hidden state (also where it returns to when you leave) ---------- */
 
@@ -846,21 +1120,27 @@ main {
 .blogs .icon-container {
   opacity: 0;
   transform: translateY(60px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 /* 2. Number badge pops in */
 .blogs .icon-container .num {
   opacity: 0;
   transform: scale(0);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 /* 3. Text fades up */
 .blogs .icon-container .para {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 /* 4. Line grows from 0 to its full width (scaleX, so the layout never shifts) */
@@ -887,7 +1167,8 @@ main {
   transition:
     opacity 0.3s ease,
     transform 0.5s cubic-bezier(0.34, 1.8, 0.64, 1);
-  transition-delay: calc(var(--s) * 1.5s + 0.45s), calc(var(--s) * 1.5s + 0.45s);
+  transition-delay:
+    calc(var(--s) * 1.5s + 0.45s), calc(var(--s) * 1.5s + 0.45s);
 }
 
 .blogs .container.animate .icon-container .para {
@@ -896,7 +1177,8 @@ main {
   transition:
     opacity 0.6s ease,
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--s) * 1.5s + 0.75s), calc(var(--s) * 1.5s + 0.75s);
+  transition-delay:
+    calc(var(--s) * 1.5s + 0.75s), calc(var(--s) * 1.5s + 0.75s);
 }
 
 .blogs .container.animate hr {
@@ -1254,7 +1536,7 @@ main {
 
 .facts {
   width: 100%;
-    background: linear-gradient(
+  background: linear-gradient(
     90deg,
     #f8fbf9 0%,
     #f3f8f4 35%,
@@ -1300,21 +1582,37 @@ main {
 }
 
 /* ===== Facts: appear one after another ===== */
-.facts .fact:nth-of-type(1) { --s: 0; }
-.facts .fact:nth-of-type(2) { --s: 1; }
-.facts .fact:nth-of-type(3) { --s: 2; }
-.facts .fact:nth-of-type(4) { --s: 3; }
+.facts .fact:nth-of-type(1) {
+  --s: 0;
+}
+.facts .fact:nth-of-type(2) {
+  --s: 1;
+}
+.facts .fact:nth-of-type(3) {
+  --s: 2;
+}
+.facts .fact:nth-of-type(4) {
+  --s: 3;
+}
 
 /* a divider shares the step of the fact that comes after it */
-.facts hr:nth-of-type(1) { --s: 1; }
-.facts hr:nth-of-type(2) { --s: 2; }
-.facts hr:nth-of-type(3) { --s: 3; }
+.facts hr:nth-of-type(1) {
+  --s: 1;
+}
+.facts hr:nth-of-type(2) {
+  --s: 2;
+}
+.facts hr:nth-of-type(3) {
+  --s: 3;
+}
 
 /* Hidden state (also where it returns to when you leave the section) */
 .facts .fact {
   opacity: 0;
   transform: translateY(40px) scale(0.92);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 .facts .fact h2 {
   font-variant-numeric: tabular-nums; /* digits keep the same width, so the layout doesn't jiggle while counting */
@@ -1322,7 +1620,9 @@ main {
 .facts hr {
   opacity: 0;
   transform: scaleY(0);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 /* Visible state: 0.6s between facts */
@@ -1353,7 +1653,7 @@ main {
 }
 .connect {
   width: 100%;
-    background: linear-gradient(
+  background: linear-gradient(
     90deg,
     #f8fbf9 0%,
     #f3f8f4 35%,
@@ -1387,6 +1687,7 @@ main {
 .connect .container-upper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .connect h1,
 .connect h2,
@@ -1399,9 +1700,9 @@ main {
 .connect .logo-container img {
   width: 100%;
 }
-.connect .container-upper h1 {
+/* .connect .container-upper h1 {
   font-size: 50px;
-}
+} */
 .connect span {
   color: var(--main--);
 }
@@ -1432,6 +1733,7 @@ main {
   align-items: center;
   background-color: var(--main--);
   border-radius: 50%;
+  cursor: pointer;
 }
 .connect img {
   width: 20px;
@@ -1564,7 +1866,7 @@ main {
 .partner {
   width: 100%;
   position: relative;
-    background: linear-gradient(
+  background: linear-gradient(
     90deg,
     #f8fbf9 0%,
     #f3f8f4 35%,
@@ -1578,6 +1880,8 @@ main {
 .partner .container {
   padding: 100px 0;
   max-width: 1280px;
+  width: 100%;
+  min-width: 0;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -1644,6 +1948,7 @@ main {
 }
 
 .partner .carousel-slide img {
+  flex-shrink: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -1685,4 +1990,674 @@ footer * {
 footer .copy-right,
 footer .teams {
   width: max-content;
+}
+
+/* =====================================================
+   RESPONSIVE: 360px to 1280px
+   ===================================================== */
+
+/* ---------- Base fixes (all sizes) ---------- */
+:root {
+  --header-h: 72px;
+} /* JS keeps this equal to the real header height */
+html {
+  scroll-padding-top: var(--header-h);
+}
+body {
+  overflow-x: clip;
+}
+img,
+video {
+  max-width: 100%;
+}
+
+.home {
+  margin-top: var(--header-h);
+}
+
+/* Fixed 1280px widths were the cause of horizontal scrolling */
+.home .container,
+.service .container,
+.blogs .container {
+  width: 100%;
+  max-width: 1280px;
+}
+
+/* A fixed 350px card overflows its grid column below ~1280px */
+.service .card {
+  width: auto;
+}
+
+.menu-toggle {
+  display: none;
+}
+nav .links .mobile-only {
+  display: none;
+}
+
+/* Big outlined background words scale with the screen */
+:is(.about, .service, .blogs, .choose-us, .contact, .teams, .award, .partner)
+  .bg-text {
+  font-size: clamp(28px, 8vw, 100px);
+  white-space: nowrap;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+/* ---------- ≤ 1280px ---------- */
+@media (max-width: 1280px) {
+  .service .icon-container {
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 24px;
+  }
+  .service .icon-container img {
+    width: 52px;
+  }
+  .web-development .container {
+    padding-inline: 24px;
+  }
+  .partner .carousel {
+    width: 900px;
+  }
+}
+
+/* ---------- ≤ 1180px: work process stays horizontal but tighter ---------- */
+@media (max-width: 1180px) {
+  .blogs hr {
+    width: 70px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  .blogs .icon-container .para {
+    width: 220px;
+  }
+}
+
+/* ---------- ≤ 1100px ---------- */
+@media (max-width: 1100px) {
+  :is(.about, .service, .blogs, .choose-us, .contact, .teams, .award, .partner)
+    .bg-text {
+    left: 24px;
+    right: auto;
+    top: 24px;
+  }
+
+  .service .container {
+    padding: 80px 40px;
+  }
+  .choose-us .container,
+  .contact .container,
+  .teams .container,
+  .award .container {
+    padding: 80px 40px;
+  }
+  .facts .container {
+    padding: 50px;
+  }
+  .partner h1 {
+    padding-left: 40px;
+  }
+
+  .award .btn-container {
+    top: 130px;
+    right: 40px;
+  }
+
+}
+
+/* ---------- ≤ 960px: work process becomes a vertical timeline ---------- */
+@media (max-width: 960px) {
+  .blogs .container-inner {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .blogs .container-inner .container-inner {
+    padding-inline: 0;
+  }
+
+  .blogs .icon-stage {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .blogs .icon-container {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  /* the connector line becomes vertical and grows downward */
+  .blogs hr {
+    width: 2px;
+    height: 50px;
+    margin: 10px 0 10px 49px;
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+  .blogs .container.animate hr {
+    transform: scaleY(1);
+  }
+
+  /* text sits to the right of its icon */
+  .blogs .icon-container .para {
+    top: 50%;
+    left: 140px;
+    bottom: auto;
+    width: min(250px, calc(100vw - 190px));
+    text-align: left;
+    translate: 0 -50%; /* separate property, so it doesn't fight the reveal transform */
+  }
+}
+
+/*menu*/
+@media (max-width: 900px) {
+  /* --- Header / nav --- */
+  nav {
+    padding: 10px 16px;
+    column-gap: 12px;
+    align-items: center;
+  }
+  nav .logo {
+    width: 120px;
+  }
+  nav .contact-me {
+    justify-self: end;
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(0, 104, 56, 0.08);
+    cursor: pointer;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--main--);
+    transition:
+      transform 0.3s ease,
+      opacity 0.2s ease;
+  }
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* full-screen slide-in panel */
+  nav .links {
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 20px 32px;
+    overflow-y: auto;
+    background: #f8fbf9;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.4s;
+  }
+  nav.menu-open .links {
+    transform: none;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  nav .links .item {
+    width: 100%;
+    border-bottom: 1px solid #dbe3ef;
+  }
+  nav .links .item > a {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 0;
+    font-size: 15px;
+  }
+  nav .item > a::before {
+    display: none;
+  } /* no desktop underline on touch */
+
+  /* chevron follows the tapped state, not the sticky :hover */
+  nav .links .item.has-drop > a::after {
+    transform: translateY(-2px) rotate(45deg);
+  }
+  nav .links .item.has-drop.open > a::after {
+    transform: translateY(1px) rotate(225deg);
+  }
+
+  /* dropdowns turn into accordions */
+  nav .links .item > .dropdown {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.45s;
+  }
+  nav .links .item.open > .dropdown {
+    visibility: visible;
+    max-height: 900px;
+    padding-bottom: 10px;
+    transition-delay: 0s;
+  }
+  nav .dropdown::before,
+  nav .dropdown::after {
+    display: none;
+  }
+  nav .links .dropdown a {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+    padding: 12px 14px;
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  nav .links .mobile-only {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    color: #fff;
+  }
+  nav .links a.mobile-only:hover {
+    color: #fff;
+  }
+
+  /* --- Home --- */
+  .home .container {
+    padding: 70px 24px;
+  }
+  .home .container .container-inner {
+    gap: 28px;
+  }
+
+  /* --- Slider strip --- */
+  .slider .carousel-item {
+    gap: 24px;
+  }
+  .slider .carousel-item span {
+    font-size: 17px;
+  }
+
+  /* --- About --- */
+  .about .container-inner {
+    flex-direction: column;
+    padding-top: 70px;
+    gap: 10px;
+  }
+  .about .left,
+  .about .right {
+    width: 100%;
+    justify-content: center;
+  }
+  .about .left .image-container {
+    width: 70%;
+    max-width: 380px;
+  }
+  .about .right .right-inner {
+    width: 100%;
+    padding: 20px 24px 60px;
+  }
+  .about p {
+    text-align: left;
+  }
+  .about .right .facts-container {
+    flex-wrap: wrap;
+    gap: 20px 24px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* --- Services --- */
+  .service .title-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  /* --- Choose us --- */
+  .choose-us .title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .choose-us .title .left {
+    max-width: none;
+  }
+  .choose-us .second-container {
+    flex-direction: column;
+  }
+  .choose-us .second-container .left,
+  .choose-us .second-container .right {
+    width: 100%;
+  }
+  .choose-us .video-container {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .choose-us .second-container .right {
+    gap: 16px;
+  }
+  .choose-us .second-container .right .card {
+    flex: 1 1 140px;
+    max-width: none;
+    min-width: 0;
+  }
+
+  /* --- Contact --- */
+  .contact .container-inner {
+    flex-direction: column;
+  }
+  .contact .left,
+  .contact .right {
+    width: 100%;
+    flex-grow: 0;
+  }
+  .contact .left {
+    min-height: 280px;
+    gap: 30px;
+  }
+  .contact .form-group {
+    flex: 1 1 240px;
+  }
+
+  /* --- Teams --- */
+  .teams .title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .teams .cards-container {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .teams .card {
+    flex: 1 1 240px;
+    max-width: 340px;
+  }
+
+  /* --- Connect (pre-footer) --- */
+  .connect .container {
+    padding: 40px 24px;
+  }
+  .connect .container-upper {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .connect .links-container {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px 24px;
+  }
+  .connect .link {
+    flex: 1 1 220px;
+    max-width: none;
+  }
+  .connect .link:first-child {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+  .connect form {
+    width: 100%;
+  }
+  .connect input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* --- Service detail pages --- */
+  .web-development .img-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .web-development .img-container img {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .partner .carousel {
+    width: 600px;
+  }
+}
+
+/* ---------- ≤ 760px: facts become a 2×2 grid ---------- */
+@media (max-width: 760px) {
+  .facts .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 16px;
+    padding: 40px 24px;
+  }
+  .facts hr {
+    display: none;
+  }
+}
+
+/* ---------- ≤ 640px: phones ---------- */
+@media (max-width: 640px) {
+  .btn-solid,
+  .btn-outline {
+    padding: 13px 24px;
+    font-size: 15px;
+  }
+
+  /* Home: text covers the full photo on narrow screens, so lift the overlay */
+  .home {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(248, 251, 249, 0.92) 0%,
+        rgba(248, 251, 249, 0.82) 100%
+      ),
+      url("/images/bg/home.webp");
+    background-size: cover;
+    background-position: center bottom;
+  }
+  .home .container {
+    padding: 50px 20px;
+  }
+  .home .btn-container {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .service .container,
+  .choose-us .container,
+  .contact .container,
+  .teams .container,
+  .award .container {
+    padding: 60px 20px;
+  }
+  .service .cards-container {
+    padding: 30px 0;
+  }
+  .service .icon-container {
+    min-width: 64px;
+    min-height: 64px;
+    border-radius: 20px;
+  }
+  .service .icon-container img {
+    width: 40px;
+  }
+  .service .card {
+    padding: 1.25rem;
+  }
+
+  .about .left .image-container {
+    width: 85%;
+  }
+  .about .right .right-inner {
+    padding: 20px 20px 50px;
+  }
+
+  .award .container {
+    padding-bottom: 40px;
+  }
+  .award .btn-container {
+    top: 24px;
+    right: 20px;
+    gap: 12px;
+  }
+  .award i {
+    font-size: 22px;
+    padding: 8px;
+  }
+  .award .slider {
+    margin-right: -20px;
+  }
+  .award .slider-item {
+    width: 260px;
+  }
+
+  .partner .container {
+    padding: 60px 0;
+  }
+  .partner h1 {
+    padding-left: 20px;
+  }
+  .partner .carousel-slide {
+    width: 120px;
+    height: 80px;
+    margin-right: 16px;
+    padding: 14px;
+  }
+
+  .web-development .card {
+    width: min(350px, 100%);
+  }
+  .web-development .container {
+    padding-inline: 20px;
+  }
+
+  footer .container {
+    flex-wrap: wrap;
+    padding: 20px;
+    text-align: center;
+  }
+  footer .copy-right,
+  footer .teams {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .partner .carousel {
+    width: 400px;
+  }
+  /* Touch screens can't hover: show the team overlay permanently */
+  .teams .card .overlay {
+    opacity: 1;
+    transform: none;
+    background: linear-gradient(transparent 40%, rgba(10, 35, 22, 0.75));
+  }
+}
+
+/* ---------- ≤ 480px: small phones (360px target) ---------- */
+@media (max-width: 480px) {
+  .slider .contianer{
+    width: 100%;
+  }
+  nav .contact-me {
+    display: none;
+  } /* it lives inside the menu on small screens */
+  nav .logo {
+    width: 110px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+  h2 {
+    font-size: 1.35rem;
+  }
+  .facts .fact h2 {
+    font-size: 1.9rem;
+  }
+  p {
+    font-size: 14.5px;
+  }
+
+  .home .container .container-inner {
+    gap: 22px;
+  }
+  .home .btn-container {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 12px;
+  }
+  .home .btn-container a {
+    text-align: center;
+  }
+
+  .about .right .facts-container {
+    gap: 20px 16px;
+  }
+  .about hr {
+    display: none;
+  }
+
+  .service .title {
+    gap: 0.75rem;
+  }
+  .service .card .title h3 {
+    font-size: 1.05rem;
+  }
+
+  .contact .form-group {
+    flex-basis: 100%;
+  }
+  .connect .link {
+    flex-basis: 100%;
+  }
+  .connect .logo-container {
+    width: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  nav .links,
+  nav .links .item > .dropdown {
+    transition: none !important;
+  }
 }

@@ -140,7 +140,7 @@ const containerObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.2,
+     threshold: 0, rootMargin: "0px 0px -12% 0px" 
   }
 );
 
@@ -252,3 +252,59 @@ if (factSection && factHeadings.length) {
   if (!reduceMotion) factHeadings.forEach(resetFact);
   factsObserver.observe(factSection);
 }
+
+
+
+
+
+/* ===== Header height → CSS var (keeps hero offset + mobile menu aligned) ===== */
+const headerEl = document.querySelector("header");
+if (headerEl) {
+  const setHeaderH = () =>
+    document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px");
+  setHeaderH();
+  new ResizeObserver(setHeaderH).observe(headerEl);
+}
+
+/* ===== Mobile menu ===== */
+(() => {
+  const nav = document.querySelector("nav");
+  const toggle = nav?.querySelector(".menu-toggle");
+  if (!nav || !toggle) return;
+
+  const mobile = window.matchMedia("(max-width: 900px)");
+  const items = nav.querySelectorAll(".item.has-drop");
+
+  const closeMenu = () => {
+    nav.classList.remove("menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    items.forEach((i) => i.classList.remove("open"));
+  };
+
+  toggle.addEventListener("click", () => {
+    const open = !nav.classList.contains("menu-open");
+    nav.classList.toggle("menu-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+
+  // Tap a parent link to open or close its dropdown (accordion)
+  items.forEach((item) => {
+    item.querySelector(":scope > a")?.addEventListener("click", (e) => {
+      if (!mobile.matches) return;
+      e.preventDefault();
+      const wasOpen = item.classList.contains("open");
+      items.forEach((i) => i.classList.remove("open"));
+      item.classList.toggle("open", !wasOpen);
+    });
+  });
+
+  // Close after choosing a real destination
+  nav.querySelectorAll(".dropdown a, .item:not(.has-drop) > a, .mobile-only").forEach((a) =>
+    a.addEventListener("click", closeMenu)
+  );
+
+  document.addEventListener("keydown", (e) => e.key === "Escape" && closeMenu());
+  mobile.addEventListener("change", (e) => { if (!e.matches) closeMenu(); });
+})();
