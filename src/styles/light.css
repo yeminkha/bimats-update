@@ -591,6 +591,144 @@ main {
   width: 70px;
 }
 
+/* ===== Services cards ===== */
+.service .cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.service .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--line, #dbe3ef);
+  overflow: hidden;
+  isolation: isolate;
+
+  /* Hidden state: this is what it returns to when the section is left */
+  opacity: 0;
+  transform: translateY(48px) scale(0.96);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s,
+    box-shadow 0.4s;
+}
+
+/* Entrance: one after another */
+.service .container.animate .card {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s,
+    box-shadow 0.4s;
+  transition-delay: calc(var(--i) * 110ms), calc(var(--i) * 110ms), 0s, 0s;
+}
+
+.service .card:nth-child(1) { --i: 0; }
+.service .card:nth-child(2) { --i: 1; }
+.service .card:nth-child(3) { --i: 2; }
+.service .card:nth-child(4) { --i: 3; }
+.service .card:nth-child(5) { --i: 4; }
+.service .card:nth-child(6) { --i: 5; }
+
+
+/* Accent line that draws across the top */
+.service .card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 4px;
+  width: 100%;
+  background: var(--dark-blue--);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+.service .card .title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+
+/* "Learn more" with an arrow that slides out */
+.service .card > a {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--blue, #1565c0);
+  transition: color 0.3s, gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service .card > a::after {
+  content: "→";
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ===== Hover (mouse devices only) ===== */
+@media (hover: hover) {
+  .service .container.animate .card:hover {
+    transform: translateY(-10px);
+    border-color: transparent;
+    box-shadow: 0 28px 50px -22px rgba(10, 31, 68, 0.55);
+    transition-delay: 0s; /* don't wait for the stagger delay on hover */
+  }
+
+  .service .card:hover::before { transform: none; }
+  .service .card:hover::after { transform: scaleX(1); }
+
+
+  /* Turns a dark icon white. Remove this line if your icons are already coloured/white. */
+  .service .card:hover .icon-container img {
+    filter: brightness(0) invert(1);
+    transform: scale(1.05);
+  }
+
+  .service .card:hover > a {
+    color: #fff;
+    gap: 0.8rem;
+  }
+  .service .card:hover > a::after { transform: translateX(4px); }
+}
+
+
+/* ===== Responsive ===== */
+@media (max-width: 1000px) {
+  .service .cards-container { grid-template-columns: repeat(2, 1fr); }
+  /* With two columns, stagger by row position instead of 6 steps */
+  .service .card:nth-child(n) { --i: 0; }
+  .service .card:nth-child(2n) { --i: 1; }
+  .service .card:nth-child(n + 3) { margin-top: 0; }
+}
+@media (max-width: 640px) {
+  .service .cards-container { grid-template-columns: 1fr; }
+  .service .card:nth-child(n) { --i: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service .card,
+  .service .container.animate .card {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+  .service .card:hover { transform: none; }
+}
+
 .blogs {
   width: 100%;
     background: linear-gradient(

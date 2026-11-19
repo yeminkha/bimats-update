@@ -147,3 +147,108 @@ const containerObserver = new IntersectionObserver(
 containers.forEach((container) => {
   containerObserver.observe(container);
 });
+
+
+/* ===== Facts: count-up numbers + scrambled text ===== */
+const factHeadings = document.querySelectorAll(".fact h2");
+const factSection = factHeadings[0]?.closest("section");
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const LETTERS = "abcdefghijklmnopqrstuvwxyz";
+const easeOut = (p) => 1 - Math.pow(1 - p, 4);
+
+function stopFact(el) {
+  cancelAnimationFrame(el._raf);
+}
+
+function resetFact(el) {
+  stopFact(el);
+  if (el.dataset.target !== undefined) {
+    el.textContent = "0" + (el.dataset.suffix || "");
+  } else if (el.dataset.text) {
+    el.textContent = randomText(el.dataset.text.length);
+  }
+}
+
+function randomText(length) {
+  return Array.from({ length }, () => LETTERS[Math.floor(Math.random() * LETTERS.length)]).join("");
+}
+
+function countUp(el, delay = 0) {
+  const target = Number(el.dataset.target);
+  const suffix = el.dataset.suffix || "";
+  const duration = 1800;
+
+  stopFact(el);
+  const begin = performance.now() + delay;
+
+  function tick(now) {
+    if (now < begin) {
+      el._raf = requestAnimationFrame(tick);
+      return;
+    }
+    const p = Math.min((now - begin) / duration, 1);
+    el.textContent = Math.round(target * easeOut(p)) + suffix;
+    if (p < 1) el._raf = requestAnimationFrame(tick);
+  }
+  el._raf = requestAnimationFrame(tick);
+}
+
+function scrambleText(el, delay = 0) {
+  const finalText = el.dataset.text;
+  const duration = 1600;
+  let lastShuffle = 0;
+
+  stopFact(el);
+  const begin = performance.now() + delay;
+
+  function tick(now) {
+    if (now < begin) {
+      el._raf = requestAnimationFrame(tick);
+      return;
+    }
+    const p = Math.min((now - begin) / duration, 1);
+    const settled = Math.floor(easeOut(p) * finalText.length);
+
+    // Shuffle the unsettled letters about every 50ms so they don't flicker too fast
+    if (now - lastShuffle > 50 || p === 1) {
+      lastShuffle = now;
+      el.textContent = finalText.slice(0, settled) + randomText(finalText.length - settled);
+    }
+
+    if (p < 1) el._raf = requestAnimationFrame(tick);
+    else el.textContent = finalText;
+  }
+  el._raf = requestAnimationFrame(tick);
+}
+
+if (factSection && factHeadings.length) {
+  const factsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          factHeadings.forEach((el, i) => {
+            const delay = i * 150; // small stagger between the three facts
+            if (reduceMotion) {
+              el.textContent =
+                el.dataset.target !== undefined
+                  ? el.dataset.target + (el.dataset.suffix || "")
+                  : el.dataset.text;
+            } else if (el.dataset.target !== undefined) {
+              countUp(el, delay);
+            } else if (el.dataset.text) {
+              scrambleText(el, delay);
+            }
+          });
+        } else {
+          factHeadings.forEach(resetFact);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  // Start from the zero / scrambled state, then wait for the section to arrive
+  if (!reduceMotion) factHeadings.forEach(resetFact);
+  factsObserver.observe(factSection);
+}
