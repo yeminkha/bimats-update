@@ -1298,6 +1298,59 @@ main {
   gap: 10px;
   text-align: center;
 }
+
+/* ===== Facts: appear one after another ===== */
+.facts .fact:nth-of-type(1) { --s: 0; }
+.facts .fact:nth-of-type(2) { --s: 1; }
+.facts .fact:nth-of-type(3) { --s: 2; }
+.facts .fact:nth-of-type(4) { --s: 3; }
+
+/* a divider shares the step of the fact that comes after it */
+.facts hr:nth-of-type(1) { --s: 1; }
+.facts hr:nth-of-type(2) { --s: 2; }
+.facts hr:nth-of-type(3) { --s: 3; }
+
+/* Hidden state (also where it returns to when you leave the section) */
+.facts .fact {
+  opacity: 0;
+  transform: translateY(40px) scale(0.92);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.facts .fact h2 {
+  font-variant-numeric: tabular-nums; /* digits keep the same width, so the layout doesn't jiggle while counting */
+}
+.facts hr {
+  opacity: 0;
+  transform: scaleY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Visible state: 0.6s between facts */
+.facts .container.animate .fact {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.6s ease,
+    transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1);
+  transition-delay: calc(var(--s) * 0.6s);
+}
+.facts .container.animate hr {
+  opacity: 1;
+  transform: scaleY(1);
+  transition:
+    opacity 0.4s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--s) * 0.6s - 0.2s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .facts .fact,
+  .facts hr {
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+}
 .connect {
   width: 100%;
     background: linear-gradient(
