@@ -1216,7 +1216,15 @@ width: 100%;
 }
 
 .choose-us {
+    background: linear-gradient(
+    90deg,
+    #f8fbf9 0%,
+    #f3f8f4 35%,
+    #edf5ef 70%,
+    #e8f1eb 100%
+  );
   width: 100%;
+  
 }
 .choose-us .container {
   max-width: 1280px;
@@ -1224,7 +1232,7 @@ width: 100%;
   position: relative;
   overflow: hidden;
   padding: 100px;
-  background: linear-gradient(90deg, #f8fbf9 0%, #f2f7f3 50%, #eaf2ec 100%);
+  /* background: linear-gradient(90deg, #f8fbf9 0%, #f2f7f3 50%, #eaf2ec 100%); */
 }
 .choose-us h3,
 .choose-us p,
@@ -1301,6 +1309,7 @@ width: 100%;
 }
 .contact {
   width: 100%;
+  
 }
 .contact .container {
   max-width: 1280px;
@@ -1739,11 +1748,11 @@ width: 100%;
 .connect .link:first-child {
   min-width: 300px;
 }
-.connect .social-container {
+ .social-container {
   display: flex;
   gap: 10px;
 }
-.connect .social {
+.social {
   width: 40px;
   height: 40px;
   display: flex;
@@ -1754,6 +1763,9 @@ width: 100%;
   cursor: pointer;
 }
 .connect img {
+  width: 20px;
+}
+.social img{
   width: 20px;
 }
 .connect a,
