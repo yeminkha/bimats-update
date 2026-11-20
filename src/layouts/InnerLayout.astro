@@ -7,10 +7,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 <Layout>
   <header>
     <nav>
-  <a class="logo"><img src="/images/icons/logo-trans.png" alt=""></a>
+  <a href="/" class="logo"><img src="/images/icons/logo-trans.png" alt=""></a>
   <div class="links" id="nav-links">
       <div class="item has-drop">
-    <a href="/">IT SERVICE</a>
+    <a href="/service">IT SERVICE</a>
         <div class="dropdown dropdown1">
             <a
               href="/services/it-outsourcing"
@@ -91,7 +91,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
   </div>
 
   <div class="item has-drop">
-    <a href="/service">SOLUTIONS</a>
+    <a href="/">SOLUTIONS</a>
         <div class="dropdown dropdown2">
             <a
               href="/solutions/virtual-desktop-infrastructure"
