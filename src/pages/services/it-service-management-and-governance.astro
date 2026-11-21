@@ -1,0 +1,50 @@
+---
+import InnerLayout from "../../layouts/InnerLayout.astro";
+import Carousel from "../../components/Carousel.astro";
+import Contact from "../../components/Contact.astro";
+import Connect from "../../components/Connect.astro";
+---
+
+<InnerLayout>
+  <section class="home service-details-home">
+    <div class="container">
+      <h1>IT Service Management & Governance</h1>
+      <p>
+        Home / <a href="/service">Service</a>
+      </p>
+    </div>
+  </section>
+  <Carousel />
+  <section class="sub-section">
+    <div class="container">
+      <!-- <div class="video-container">
+        <video autoplay muted loop playsinline poster="/images/thumbnail.jpg">
+          <source src="/videos/service.mp4" type="video/mp4" />
+          Your browser does not support the HTML video tag.
+        </video>
+      </div> -->
+      <div class="bg-icon">
+        <img src="/images/icons/team.png" alt="">
+      </div>
+      <h1>
+        About <span>IT Service Management & Governance</span>
+      </h1>
+
+      <p>
+        Our key of IT service is our approach: to assist clients in maximizing
+        their business performance. With flexibility being essential, our
+        approach is to ensure all of your business communication and activities
+        contribute towards achieving a common goal. In providing innovative
+        technology solutions and simple business terms our goal is for BIM
+        Advanced Technology Services to become a partner you trust and rely on.
+        Otherwise, BIM ensures that we can govern our valuable customers
+        incident and problem management, configuration and change management,
+        asset management and deployment management well.
+      </p>
+    </div>
+  </section>
+  <!-- <Carousel /> -->
+  <Contact />
+  <Carousel />
+  <Connect />
+</InnerLayout>
