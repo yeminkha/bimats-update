@@ -1,0 +1,51 @@
+---
+import InnerLayout from "../../layouts/InnerLayout.astro";
+import Carousel from "../../components/Carousel.astro";
+import Contact from "../../components/Contact.astro";
+import Connect from "../../components/Connect.astro";
+---
+
+<InnerLayout>
+  <section class="home service-details-home">
+    <div class="container">
+      <h1>CABLING SERVICES</h1>
+      <p>
+        Home / <a href="/service">Service</a>
+      </p>
+    </div>
+  </section>
+  <Carousel />
+  <section class="sub-section">
+    <div class="container">
+      <!-- <div class="video-container">
+        <video autoplay muted loop playsinline poster="/images/thumbnail.jpg">
+          <source src="/videos/service.mp4" type="video/mp4" />
+          Your browser does not support the HTML video tag.
+        </video>
+      </div> -->
+      <h1>
+        About <span>CABLING SERVICES</span>
+      </h1>
+      <p>
+        A smart cabling system can pay for itself many times over its lifetime.
+        Good decisions today can eliminate costly re-cabling in the future.
+      </p>
+      <p>
+        A separate specification written for communications cabling systems
+        ensures maximization of the end-user’s specific applications and reduces
+        performance variances. Integrating technologies will increase your
+        production capabilities and adherence to established industry standards
+        ensures the security and functionality of your structured cabling
+        system.
+      </p>
+      <p>
+        BIM, Inc. understands your applications and designs infrastructures that
+        are customized for you. Your cabling solution will eliminate the
+        frustration of poor network performance or downtime.
+      </p>
+    </div>
+  </section>
+  <Contact />
+  <Carousel />
+  <Connect />
+</InnerLayout>

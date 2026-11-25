@@ -308,3 +308,60 @@ if (headerEl) {
   document.addEventListener("keydown", (e) => e.key === "Escape" && closeMenu());
   mobile.addEventListener("change", (e) => { if (!e.matches) closeMenu(); });
 })();
+
+
+/* ===== Contact form ===== */
+(() => {
+  const form = document.querySelector(".contact-form");
+  if (!form) return;
+
+  const status = form.querySelector(".form-status");
+  const button = form.querySelector("button[type='submit']");
+  const ENDPOINT = ""; // <- put your form URL here (Formspree, your API route, etc.)
+
+  const setStatus = (text, type = "") => {
+    status.textContent = text;
+    status.className = "form-status " + type;
+  };
+
+  // Show red borders only on fields the person has touched or submitted
+  form.querySelectorAll("input, select, textarea").forEach((field) => {
+    field.addEventListener("input", () => field.classList.remove("is-invalid"));
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const invalid = [...form.elements].filter((f) => f.willValidate && !f.checkValidity());
+    form.querySelectorAll(".is-invalid").forEach((f) => f.classList.remove("is-invalid"));
+
+    if (invalid.length) {
+      invalid.forEach((f) => f.classList.add("is-invalid"));
+      invalid[0].focus();
+      setStatus("Please fill in the highlighted fields.", "error");
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Sending...";
+    setStatus("");
+
+    try {
+      if (ENDPOINT) {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error("Request failed");
+      }
+      form.reset();
+      setStatus("Thank you. We will get back to you shortly.", "ok");
+    } catch {
+      setStatus("Something went wrong. Please try again or call us.", "error");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Send Message";
+    }
+  });
+})();

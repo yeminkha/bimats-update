@@ -1,0 +1,55 @@
+---
+import InnerLayout from "../../layouts/InnerLayout.astro";
+import Carousel from "../../components/Carousel.astro";
+import Contact from "../../components/Contact.astro";
+import Connect from "../../components/Connect.astro";
+---
+
+<InnerLayout>
+  <section class="home service-details-home">
+    <div class="container">
+      <h1>STORAGE SOLUTIONS</h1>
+      <p>
+        Home / <a href="/service">Service</a>
+      </p>
+    </div>
+  </section>
+  <Carousel />
+  <section class="sub-section">
+    <div class="container">
+      <!-- <div class="video-container">
+        <video autoplay muted loop playsinline poster="/images/thumbnail.jpg">
+          <source src="/videos/service.mp4" type="video/mp4" />
+          Your browser does not support the HTML video tag.
+        </video>
+      </div> -->
+      <h1>
+        About <span>STORAGE SOLUTIONS</span>
+      </h1>
+      <p>
+        BIM sets the standard in highly available, scalable, and reliable
+        platforms that protect, manage and retrieve business-critical
+        information for virtually every enterprise computing environment. An
+        Equalogic, HP, Nexsan, and Imation Authorized Partner, BIM surrounds our
+        partners technology services with our rich knowledge base, comprehensive
+        skills set, professionalism, and consistency of execution. BIM can
+        design, deploy and maintain the right storage solution for your
+        organization, working with experts in enterprise storage, enterprise
+        management, business continuity solutions, and information lifecycle
+        management.
+      </p>
+      <p>
+        BIM storage solutions help organizations centralize and automate storage
+        management tasks, reduce costs by consolidating resources, and protect
+        information to ensure business continuity. Our customers include the
+        world’s largest companies, manufacturers, healthcare institutions, life
+        sciences organizations, telecommunications providers, airlines,
+        transportation companies, educational institutions, regional and
+        national government agencies, among others.
+      </p>
+    </div>
+  </section>
+  <Contact />
+  <Carousel />
+  <Connect />
+</InnerLayout>

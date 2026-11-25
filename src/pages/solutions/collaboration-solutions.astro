@@ -1,0 +1,41 @@
+---
+import InnerLayout from "../../layouts/InnerLayout.astro";
+import Carousel from "../../components/Carousel.astro";
+import Contact from "../../components/Contact.astro";
+import Connect from "../../components/Connect.astro";
+---
+
+<InnerLayout>
+  <section class="home service-details-home">
+    <div class="container">
+      <h1>COLLABORATION SOLUTIONS</h1>
+      <p>
+        Home / <a href="/service">Service</a>
+      </p>
+    </div>
+  </section>
+  <Carousel />
+  <section class="sub-section">
+    <div class="container">
+      <!-- <div class="video-container">
+        <video autoplay muted loop playsinline poster="/images/thumbnail.jpg">
+          <source src="/videos/service.mp4" type="video/mp4" />
+          Your browser does not support the HTML video tag.
+        </video>
+      </div> -->
+      <h1>
+        About <span>COLLABORATION SOLUTIONS</span>
+      </h1>
+      <p>
+        BIM literally has the ability to dispatch service technicians anywhere
+        in the country, thereby becoming a single point of reference for your
+        technology needs anywhere within your enterprise. Currently, our team
+        has wide range throughout Yangon, Mandalay and Nay Pyi Taw with high
+        prestige in customer success and management services.
+      </p>
+    </div>
+  </section>
+  <Contact />
+  <Carousel />
+  <Connect />
+</InnerLayout>

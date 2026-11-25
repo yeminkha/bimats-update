@@ -2,135 +2,193 @@
 import InnerLayout from "../layouts/InnerLayout.astro";
 import Carousel from "./Carousel.astro";
 import Connect from "./Connect.astro";
-import WhyChooseUs  from "./Why-choose-us.astro";
+import WhyChooseUs from "./Why-choose-us.astro";
 import Contact from "./Contact.astro";
-import  Service  from "./Service.astro";
-import  Partner  from "./Partner.astro";
+import Service from "./Service.astro";
+import Partner from "./Partner.astro";
 import Teams from "./Teams.astro";
-import  Award from "./Award.astro";
+import Award from "./Award.astro";
 ---
 
 <InnerLayout>
-    <section class="home">
-      <div class="container">
-        <div class="container-inner">
-          <h2>// Experience The Best It Solutions</h2>
-          <h1>Where Creativity Meets Cutting-Edge Technology</h1>
-          <p>
-Empowering enterprises across Myanmar with robust cloud infrastructure, secure network architecture, and 24/7 dedicated IT management.          </p>
-          <div class="btn-container">
-            <a href="" class="btn-solid">Explore More</a>
-            <a href="" class="btn-outline">View All Services</a>
-          </div>
+  <section class="home">
+    <div class="container">
+      <div class="container-inner">
+        <h2>// Experience The Best It Solutions</h2>
+        <h1>Where Creativity Meets Cutting-Edge Technology</h1>
+        <p>
+          Empowering enterprises across Myanmar with robust cloud
+          infrastructure, secure network architecture, and 24/7 dedicated IT
+          management.
+        </p>
+        <div class="btn-container">
+          <a href="" class="btn-solid">
+            Explore More
+          </a>
+          <a href="" class="btn-outline">
+            View All Services
+          </a>
         </div>
       </div>
-    </section>
-    <Carousel />
-    <section id="about" class="about">
-      <div class="container">
-        <h1 class="bg-text">About Us</h1>
-        <div class="container-inner">
-          <div class="left">
-            <div class="image-container">
-              <img src="/images/bg/home-bg.jpg" alt="" />
-            </div>
+    </div>
+  </section>
+  <Carousel />
+  <section id="about" class="about">
+    <div class="container">
+      <h1 class="bg-text">About Us</h1>
+      <div class="container-inner">
+        <div class="left">
+          <div class="image-container">
+            <img src="/images/bg/home-bg.jpg" alt="" />
           </div>
-          <div class="right">
-            <div class="right-inner">
-              <h1>Building Reliable<span> IT Infrastructure Since 2015</span></h1>
-              <p>
-Founded in 2015 as BIM Trainings, we became BIM Advanced Technology Services (BIMATS) under BIM GROUP in 2016. We specialize in comprehensive IT infrastructure, network security, cloud collaboration, and managed services across Myanmar. Our team of certified engineers provides expert solutions, from design to support, helping enterprises maintain critical systems and scale securely.              </p>
-              <p>Our mission is to support clients from inception to completion for all business IT needs. We aim to be the preferred IT partner, evolving from a startup into a highly reliable industry leader by understanding customer needs, providing high-performance services, and nurturing local IT experts.</p>
-              <div class="facts-container">
-                <div class="fact"><h2 data-target="2015">2015</h2><p>Established Legacy</p></div><hr />
-                <div class="fact"><h2 data-target="10" data-suffix="+">10+</h2><p>Enterprise IT Experience</p></div><hr />
-                <div class="fact"><h2 data-text="Nationwide">Nationwide</h2><p>Certified engineer support</p></div>
+        </div>
+        <div class="right">
+          <div class="right-inner">
+            <h1>
+              Building Reliable<span> IT Infrastructure Since 2015</span>
+            </h1>
+            <p>
+              Founded in 2015 as BIM Trainings, we became BIM Advanced
+              Technology Services (BIMATS) under BIM GROUP in 2016. We
+              specialize in comprehensive IT infrastructure, network security,
+              cloud collaboration, and managed services across Myanmar. Our team
+              of certified engineers provides expert solutions, from design to
+              support, helping enterprises maintain critical systems and scale
+              securely.
+            </p>
+            <p>
+              Our mission is to support clients from inception to completion for
+              all business IT needs. We aim to be the preferred IT partner,
+              evolving from a startup into a highly reliable industry leader by
+              understanding customer needs, providing high-performance services,
+              and nurturing local IT experts.
+            </p>
+            <div class="facts-container">
+              <div class="fact">
+                <h2 data-target="2015">2015</h2>
+                <p>Established Legacy</p>
+              </div>
+              <hr />
+              <div class="fact">
+                <h2 data-target="10" data-suffix="+">
+                  10+
+                </h2>
+                <p>Enterprise IT Experience</p>
+              </div>
+              <hr />
+              <div class="fact">
+                <h2 data-text="Nationwide">Nationwide</h2>
+                <p>Certified engineer support</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <Service/>
-    <WhyChooseUs></WhyChooseUs>
-    <section class="blogs">
-      <div class="container">
-        <h1 class="bg-text">WORKPROCESS</h1>
+    </div>
+  </section>
+  <Service />
+  <WhyChooseUs />
+  <section class="blogs">
+    <div class="container">
+      <h1 class="bg-text">WORKPROCESS</h1>
+      <div class="container-inner">
+        <h2>
+          <span>//</span>Our Work Process
+        </h2>
+        <h1>
+          Our Proven <span>Work Process</span>
+        </h1>
         <div class="container-inner">
-          <h2><span>//</span>Our Work Process</h2>
-          <h1>Our Proven <span>Work Process</span></h1>
-          <div class="container-inner">
-            <div class="icon-stage">
-              <div class="icon-container">
-                <img src="/images/icons/creativity.png" alt="" />
-                <div class="num"><span>01</span></div>
-                <div class="para">
-                  <h2>Consulting</h2>
-                  <p>
-Audit your current environment and clarify technical requirements from the ground up                </p>
-                </div>
-              </div><hr />
+          <div class="icon-stage">
+            <div class="icon-container">
+              <img src="/images/icons/creativity.png" alt="" />
+              <div class="num">
+                <span>01</span>
+              </div>
+              <div class="para">
+                <h2>Consulting</h2>
+                <p>
+                  Audit your current environment and clarify technical
+                  requirements from the ground up
+                </p>
+              </div>
+            </div>
+            <hr />
 
-              <div class="icon-container">
-                <img src="/images/icons/innovation-strategy.png" alt="" />
-                <div class="num"><span>02</span></div>
-                <div class="para">
-                  <h2>Strategy</h2>
-                  <p>
-Map out cost-effective, resilient architectures tailored to your growth              </p>
-                </div>
-              </div><hr />
+            <div class="icon-container">
+              <img src="/images/icons/innovation-strategy.png" alt="" />
+              <div class="num">
+                <span>02</span>
+              </div>
+              <div class="para">
+                <h2>Strategy</h2>
+                <p>
+                  Map out cost-effective, resilient architectures tailored to
+                  your growth
+                </p>
+              </div>
+            </div>
+            <hr />
 
-              <div class="icon-container">
-                <img src="/images/icons/organization-chart.png" alt="" />
+            <div class="icon-container">
+              <img src="/images/icons/organization-chart.png" alt="" />
 
-                <div class="num"><span>03</span></div>
-                <div class="para">
-                  <h2>Implementing</h2>
-                  <p>
-Execute rollouts, cabling, integrations, and security controls to specification          </p>
-                </div>
-              </div><hr />
+              <div class="num">
+                <span>03</span>
+              </div>
+              <div class="para">
+                <h2>Implementing</h2>
+                <p>
+                  Execute rollouts, cabling, integrations, and security controls
+                  to specification
+                </p>
+              </div>
+            </div>
+            <hr />
 
-              <div class="icon-container">
-                <img src="/images/icons/happiness.png" alt="" />
-                <div class="num"><span>04</span></div>
-                <div class="para">
-                  <h2>Final Result</h2>
-                  <p>
-Achieve smooth operations, reduced downtime, and measurable business value                </p>
-                </div>
+            <div class="icon-container">
+              <img src="/images/icons/happiness.png" alt="" />
+              <div class="num">
+                <span>04</span>
+              </div>
+              <div class="para">
+                <h2>Final Result</h2>
+                <p>
+                  Achieve smooth operations, reduced downtime, and measurable
+                  business value
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-        <section class="facts">
-      <div class="container">
-        <div class="fact">
-          <h2>300+</h2>
-          <p>Team Members</p>
-        </div>
-        <hr>
-        <div class="fact">
-          <h2>2000+</h2>
-          <p>Happy Clients</p>
-        </div>
-        <hr>
-        <div class="fact">
-          <h2>99%</h2>
-          <p>Customer Satisfication</p>
-        </div>
-        <hr>
-        <div class="fact">
-          <h2>10+</h2>
-          <p>Years Experience</p>
-        </div>
+    </div>
+  </section>
+  <section class="facts">
+    <div class="container">
+      <div class="fact">
+        <h2>300+</h2>
+        <p>Team Members</p>
       </div>
-    </section>
-    <!-- <WhyChooseUs/> -->
-    <Partner></Partner>
-    <!-- <Contact></Contact> -->
-    <Connect></Connect>
+      <hr />
+      <div class="fact">
+        <h2>2000+</h2>
+        <p>Happy Clients</p>
+      </div>
+      <hr />
+      <div class="fact">
+        <h2>99%</h2>
+        <p>Customer Satisfication</p>
+      </div>
+      <hr />
+      <div class="fact">
+        <h2>10+</h2>
+        <p>Years Experience</p>
+      </div>
+    </div>
+  </section>
+  <Contact/>
+  <!-- <WhyChooseUs/> -->
+  <Partner />
+  <Connect />
 </InnerLayout>

@@ -43,65 +43,49 @@
           Get Your <span>Free Quote</span> Today!
         </h1>
         <div class="form-container">
-          <form class="contact-form">
-            <div class="form-group">
-              <label for="name">Name*</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your name"
-              />
-            </div>
+<form class="contact-form" novalidate>
+  <div class="form-group">
+    <label for="name">Name*</label>
+    <input type="text" id="name" name="name" placeholder="Your name"
+           autocomplete="name" required />
+  </div>
 
-            <div class="form-group">
-              <label for="email">Email*</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your email"
-              />
-            </div>
+  <div class="form-group">
+    <label for="email">Email*</label>
+    <input type="email" id="email" name="email" placeholder="Your email"
+           autocomplete="email" required />
+  </div>
 
-            <div class="form-group">
-              <label for="phone">Phone*</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Your phone number"
-              />
-            </div>
+  <div class="form-group">
+    <label for="phone">Phone*</label>
+    <input type="tel" id="phone" name="phone" placeholder="Your phone number"
+           autocomplete="tel" inputmode="tel" required />
+  </div>
 
-            <div class="form-group">
-              <label for="service">Service*</label>
-              <select id="service" name="service">
-                <option value="" disabled selected>
-                  Select a service
-                </option>
-                <option value="web-development">Web Development</option>
-                <option value="web-design">Web Design</option>
-                <option value="networking">Networking</option>
-                <option value="cyber-security">Cyber Security</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
+  <div class="form-group">
+    <label for="service">Service*</label>
+    <select id="service" name="service" required>
+      <option value="" disabled selected>Select a service</option>
+      <option value="managed-it">Managed IT Services</option>
+      <option value="it-infra">IT Infra Management</option>
+      <option value="cloud">Cloud Integration</option>
+      <option value="cyber-security">Cyber Security</option>
+      <option value="consulting">Consulting Services</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
 
-            <div class="form-group message">
-              <label for="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                placeholder="Write your message..."
-              ></textarea>
-            </div>
+  <div class="form-group message">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5"
+              placeholder="Tell us what you need..."></textarea>
+  </div>
 
-            <button type="submit" class="btn">
-              Send Message
-            </button>
-          </form>
+  <div class="form-footer">
+    <p class="form-status" role="status" aria-live="polite"></p>
+    <button type="submit" class="btn-solid">Send Message</button>
+  </div>
+</form>
         </div>
       </div>
     </div>
