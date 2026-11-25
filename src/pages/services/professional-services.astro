@@ -1,0 +1,129 @@
+---
+import InnerLayout from "../../layouts/InnerLayout.astro";
+import Carousel from "../../components/Carousel.astro";
+import Contact from "../../components/Contact.astro";
+import Connect from "../../components/Connect.astro";
+---
+
+<InnerLayout>
+  <section class="home service-details-home">
+    <div class="container">
+      <h1>Professional Services</h1>
+      <p>
+        Home / <a href="/service">Service</a>
+      </p>
+    </div>
+  </section>
+  <Carousel />
+  <section class="sub-section">
+    <div class="container">
+      <!-- <div class="video-container">
+        <video autoplay muted loop playsinline poster="/images/thumbnail.jpg">
+          <source src="/videos/service.mp4" type="video/mp4" />
+          Your browser does not support the HTML video tag.
+        </video>
+      </div> -->
+      <div class="bg-icon">
+        <img src="/images/icons/team.png" alt="" />
+      </div>
+      <h1>
+        About <span>Professional Services</span>
+      </h1>
+
+      <p>
+        As a specialist in professional IT solutions, BIM offers a host of
+        solution integration services that are flexible, agile, secure and cost
+        effective. These are delivered following our 3DM service methodology:
+      </p>
+      <p>Discover, Design, Deploy and Manage.</p>
+      <p>Our world-class professional services portfolio includes:</p>
+      <div class="list">
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Application Networking Services
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Borderless Networks
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          dCollaboration Architecture
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Contact Center Express
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Data Center Architecture
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Optical Networking
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Security
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Service Provider
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Storage Area Networking
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Wireless
+        </div>
+      </div>
+      <p>
+        Our highly skilled and qualified professional services team, featuring a
+        high proportion of engineering and technical staff, helps customers to
+        understand the current state of their business communications systems
+        and ensures alignment with their business objectives.
+      </p>
+      <p>
+        Talk to us and let us help in visualizing your future communication
+        systems and roadmap, identifying ROI in productivity gains and reducing
+        your costs.
+      </p>
+    </div>
+  </section>
+
+  <Contact />
+  <Carousel />
+  <Connect />
+</InnerLayout>

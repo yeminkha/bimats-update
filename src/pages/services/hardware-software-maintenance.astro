@@ -1,0 +1,85 @@
+---
+import InnerLayout from "../../layouts/InnerLayout.astro";
+import Carousel from "../../components/Carousel.astro";
+import Contact from "../../components/Contact.astro";
+import Connect from "../../components/Connect.astro";
+---
+
+<InnerLayout>
+  <section class="home service-details-home">
+    <div class="container">
+      <h1>Hardware/Software Maintenance</h1>
+      <p>
+        Home / <a href="/service">Service</a>
+      </p>
+    </div>
+  </section>
+  <Carousel />
+  <section class="sub-section">
+    <div class="container">
+      <!-- <div class="video-container">
+        <video autoplay muted loop playsinline poster="/images/thumbnail.jpg">
+          <source src="/videos/service.mp4" type="video/mp4" />
+          Your browser does not support the HTML video tag.
+        </video>
+      </div> -->
+      <h1>
+        About <span>Hardware/Software Maintenance</span>
+      </h1>
+      <h2>Cover Your Assets with Single-Source Service</h2>
+      <p>
+        Computer downtime is expensive. Every minute of downtime means losses in
+        productivity and income. We make it easy to coordinate service coverage
+        for single or multiple locations. Our National Service Network provides
+        consistent maintenance and repair anywhere in the country. Regardless of
+        the hardware problem or location, you make only one phone call to our
+        Central Dispatch Center. We act fast to keep your system up and running
+        – and your downtime down.
+      </p>
+      <p>
+        BIM’s Hardware Maintenance Services offer you qualified technical
+        expertise, flexible coverage, and responsive nationwide service. It’s
+        one of the smartest, most cost-effective investments that you can make
+        for your company.
+      </p>
+      <h2>Service Options to Meet Your Needs</h2>
+      <p>
+        Select the coverage you want. Our flexible programs let you pick and
+        choose to design the coverage that you that you need. Select from the
+        following:
+      </p>
+      <div class="list">
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Maintenance Agreement – Reduces downtime by providing all the parts
+          and labor needed to restore malfunctioning new or used equipment to
+          proper operating condition. A maintenance agreement puts a ceiling on
+          your maintenance costs and guarantees response times.
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Warranty Upgrade Program – An easy way to upgrade manufacturer
+          warranties to meet your service needs by improving response levels.
+        </div>
+        <div class="list-item">
+          <span>
+            {" "}
+            <img src="/images/icons/check.png" alt="" />
+          </span>
+          Time and Materials Program – You pay only for the specific services
+          performed by our qualified technicians, systems engineers and
+          consultants.
+        </div>
+      </div>
+    </div>
+  </section>
+  <Contact />
+  <Carousel />
+  <Connect />
+</InnerLayout>

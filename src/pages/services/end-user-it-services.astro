@@ -1,0 +1,45 @@
+---
+import InnerLayout from "../../layouts/InnerLayout.astro";
+import Carousel from "../../components/Carousel.astro";
+import Contact from "../../components/Contact.astro";
+import Connect from "../../components/Connect.astro";
+---
+
+<InnerLayout>
+  <section class="home service-details-home">
+    <div class="container">
+      <h1>End User IT Services</h1>
+      <p>
+        Home / <a href="/service">Service</a>
+      </p>
+    </div>
+  </section>
+  <Carousel />
+  <section class="sub-section">
+    <div class="container">
+      <!-- <div class="video-container">
+        <video autoplay muted loop playsinline poster="/images/thumbnail.jpg">
+          <source src="/videos/service.mp4" type="video/mp4" />
+          Your browser does not support the HTML video tag.
+        </video>
+      </div> -->
+      <div class="bg-icon">
+        <img src="/images/icons/team.png" alt="" />
+      </div>
+      <h1>
+        About <span>End User IT Services</span>
+      </h1>
+
+      <p>
+        End User Help Desk Support Services provide end users with remote
+        assistance for their workstations and associated peripherals, and
+        guarantee that an engineer will be assigned to their needs within an
+        arranged period in advance.
+      </p>
+    </div>
+  </section>
+
+  <Contact />
+  <Carousel />
+  <Connect />
+</InnerLayout>
