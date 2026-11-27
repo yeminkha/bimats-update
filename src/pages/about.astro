@@ -1,0 +1,64 @@
+---
+import InnerLayout from "../layouts/InnerLayout.astro";
+import Carousel from "../components/Carousel.astro";
+import Contact from "../components/Contact.astro";
+import Connect from "../components/Connect.astro";
+import AboutUs from "../components/About.astro";
+import Facts from "../components/Facts.astro";
+import  WorkProcess from "../components/WorkProcess.astro";
+---
+
+<InnerLayout>
+  <section class="home service-details-home">
+    <div class="container">
+      <h1>ABOUT US</h1>
+      <p>
+        Home / <a href="/about">ABOUT US</a>
+      </p>
+    </div>
+  </section>
+  <Carousel />
+  <AboutUs />
+
+  <section class="mission-vision">
+    <div class="container">
+      <div class="cards-container">
+        <div class="card">
+          <div class="title">
+            <div class="icon-container">
+              <img src="/images/icons/rocket-white.png" alt="" />
+            </div>
+            <h3>Our Mission</h3>
+          </div>
+          <img class="bg-img"  src="/images/icons/rocket.png" alt="">
+          <p>
+            We support your business IT needs from inception to completion. Our
+            strategy focuses on understanding your goals, solving challenges
+            with high-performance services, and leveraging modern technology
+            through qualified IT specialists to drive your success.
+          </p>
+        </div>
+        <div class="card">
+          <div class="title">
+            <div class="icon-container">
+              <img src="/images/icons/eye-white.png" alt="" />
+            </div>
+            <h3>Our Vision</h3>
+          </div>
+          <img class="bg-img" src="/images/icons/eye.png" alt="">
+          <p>
+            To become a preferred IT Service partner that fulfills your needs.
+            It has changed from small startup to highly reliable supplier for
+            the customers, advanced business goals and promoted well-qualified
+            IT Experts in the industry.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Facts/>
+  <WorkProcess/>
+  <Contact />
+  <Carousel />
+  <Connect />
+</InnerLayout>

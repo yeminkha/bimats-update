@@ -1,0 +1,110 @@
+---
+import InnerLayout from "../layouts/InnerLayout.astro";
+---
+
+<InnerLayout>
+  <section class="partner-page">
+    <div class="container">
+      <h1>
+        Powered by <br />
+        <span>Trusted Partnerships </span>
+      </h1>
+      <div class="bg-text">Partners</div>
+      <div class="cards-container">
+        <div class="card">
+          <img src="/images/partner/blue-coat.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/brocade.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/check-point.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/cisco.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/efficient-ip.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/fortinet.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/hitachi.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/hp.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/juniper.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/mcafee.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/ms-csp.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/ms-gold.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/ms-manage.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/paloalto.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/red-hat.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/riverbed.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/symantec.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/trend-micro.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/veritas.png" alt="" />
+        </div>
+        <div class="card">
+          <img src="/images/partner/vmware-training.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+</InnerLayout>
+<script>
+  const cards = document.querySelectorAll<HTMLElement>(".partner-page .card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      // cards entering together (same row / same scroll step) get staggered
+      const entering = entries
+        .filter((e) => e.isIntersecting)
+        .map((e) => e.target as HTMLElement)
+        .sort((a, b) => Number(a.dataset.i) - Number(b.dataset.i));
+
+      entering.forEach((card, i) => {
+        const delay = i * 90;
+        card.style.setProperty("--d", `${delay}ms`);
+        card.classList.add("visible");
+        setTimeout(() => card.classList.add("done"), delay + 800);
+        observer.unobserve(card);
+      });
+    },
+    { threshold: 0.2, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  cards.forEach((card, i) => {
+    card.dataset.i = String(i);
+    observer.observe(card);
+  });
+</script>
+
+<noscript>
+  <style>
+    .partner-page .card { opacity: 1; transform: none; }
+  </style>
+</noscript>

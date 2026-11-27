@@ -719,7 +719,8 @@ main {
     transparent 100%
   );
 } */
-.service .container {
+.service .container,
+.about-us .container {
   position: relative;
   width: 1280px;
   margin: 0 auto;
@@ -1527,8 +1528,12 @@ main {
   font-weight: 600;
   color: #24332b; /* beats the white .contact p rule */
 }
-.contact .form-status.ok { color: var(--main--); }
-.contact .form-status.error { color: #c0392b; }
+.contact .form-status.ok {
+  color: var(--main--);
+}
+.contact .form-status.error {
+  color: #c0392b;
+}
 
 .contact button.btn-solid {
   align-self: auto;
@@ -1540,7 +1545,9 @@ main {
   color: #fff;
   border: 2px solid transparent;
 }
-.contact button.btn-solid:hover { color: #fff; }
+.contact button.btn-solid:hover {
+  color: #fff;
+}
 .contact button.btn-solid:focus-visible {
   outline: 3px solid var(--gold--);
   outline-offset: 3px;
@@ -1555,7 +1562,9 @@ main {
 .contact .form-group {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 .contact .container.animate .form-group {
   opacity: 1;
@@ -1565,25 +1574,53 @@ main {
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: calc(var(--f, 0) * 80ms + 300ms);
 }
-.contact .form-group:nth-child(1) { --f: 0; }
-.contact .form-group:nth-child(2) { --f: 1; }
-.contact .form-group:nth-child(3) { --f: 2; }
-.contact .form-group:nth-child(4) { --f: 3; }
-.contact .form-group:nth-child(5) { --f: 4; }
+.contact .form-group:nth-child(1) {
+  --f: 0;
+}
+.contact .form-group:nth-child(2) {
+  --f: 1;
+}
+.contact .form-group:nth-child(3) {
+  --f: 2;
+}
+.contact .form-group:nth-child(4) {
+  --f: 3;
+}
+.contact .form-group:nth-child(5) {
+  --f: 4;
+}
 
 /* Responsive */
 @media (max-width: 1100px) {
-  .contact .form-container { padding: 24px; }
+  .contact .form-container {
+    padding: 24px;
+  }
 }
 @media (max-width: 640px) {
-  .contact .form-container { padding: 18px; border-radius: 16px; }
-  .contact form { grid-template-columns: 1fr; gap: 16px; }
-  .contact .form-footer { flex-direction: column-reverse; align-items: stretch; }
-  .contact button.btn-solid { width: 100%; margin-left: 0; }
+  .contact .form-container {
+    padding: 18px;
+    border-radius: 16px;
+  }
+  .contact form {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .contact .form-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .contact button.btn-solid {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .contact .form-group { opacity: 1; transform: none; transition: none; }
+  .contact .form-group {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .teams {
@@ -2040,6 +2077,14 @@ main {
 .sub-section .list-item {
   display: flex;
   gap: 10px;
+  align-items: center;
+}
+.sub-section ul li {
+  padding-left: 20px;
+}
+.sub-section .align-end {
+  align-self: flex-end;
+  text-align: end;
 }
 .sub-section .img-container {
   display: flex;
@@ -2062,8 +2107,8 @@ main {
   width: max-content;
 }
 
-.sub-section h1 span{
-  color:var(--main--);
+.sub-section h1 span {
+  color: var(--main--);
 }
 .sub-section .card-container {
   display: flex;
@@ -2091,7 +2136,7 @@ main {
 }
 .sub-section .list-item span {
   min-width: 20px;
-  width:20px;
+  width: 20px;
   display: block;
 }
 .sub-section .list-item span img {
@@ -2158,7 +2203,7 @@ main {
     transparent 100%
   );
 }
-.sub-section .partner .container{
+.sub-section .partner .container {
   padding: 0;
 }
 
@@ -2219,6 +2264,238 @@ main {
   -webkit-text-stroke: 2px rgba(0, 70, 38, 0.1);
   font-weight: 800;
 }
+
+.mission-vision {
+  width: 100%;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    #f8fbf9 0%,
+    #f3f8f4 35%,
+    #edf5ef 70%,
+    #e8f1eb 100%
+  );
+}
+.mission-vision .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+.mission-vision .cards-container {
+  padding: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.mission-vision .icon-container {
+  width: 50px;
+  height: 50px;
+  background-color: var(--dark-blue--);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.mission-vision .icon-container img {
+  width: 60%;
+  height: 60%;
+}
+
+.mission-vision .bg-img {
+  display: block;
+  position: absolute;
+  width: 100px;
+  top: -4%;
+  right: -2%;
+}
+
+.mission-vision .card {
+  overflow: hidden;
+  max-width: 45%;
+  position: relative;
+  min-width: 350px;
+  background-color: #ffffff;
+  border: 1px solid #e2ebe5;
+  border-radius: 16px;
+  box-shadow:
+    0 4px 20px -2px rgba(15, 23, 42, 0.06),
+    0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+}
+.mission-vision .card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(18, 107, 63, 0.25);
+  box-shadow:
+    0 12px 28px -4px rgba(18, 107, 63, 0.12),
+    0 4px 10px -2px rgba(15, 23, 42, 0.05);
+}
+
+.partner-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    #f8fbf9 0%,
+    #f3f8f4 35%,
+    #edf5ef 70%,
+    #e8f1eb 100%
+  );
+}
+.partner-page span {
+  background: linear-gradient(135deg, #00804a 0%, #006838 50%, #004d2b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.partner-page h1{
+  padding: 0 50px;
+}
+.partner-page .bg-text {
+  position: absolute;
+  font-size: 100px;
+  top: 10%;
+  left: 50%;
+  color: transparent; 
+  -webkit-text-stroke: 2px rgba(0, 70, 38, 0.1);
+  text-wrap: nowrap;
+  font-weight: 800;
+  z-index: -1;
+}
+.partner-page .card {
+  width: 150px;
+  height: 100px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 14px;
+}
+.partner-page .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  padding: 100px 0;
+}
+.partner-page .cards-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 50px 0;
+}
+/* keep bg-text behind content but above the gradient, and avoid sideways scroll */
+.partner-page {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* cancel the global "section .container" fade so only the children animate */
+.partner-page .container {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none;
+}
+
+.partner-page h1 {
+  animation: titleIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.partner-page h1 span {
+  display: inline-block; /* lets the span move */
+  background: linear-gradient(90deg, #004d2b, #00a35c, #004d2b);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    spanIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both,
+    shine 4s linear 1.2s infinite;
+}
+
+@keyframes titleIn {
+  from { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes spanIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes shine {
+  from { background-position: 0% center; }
+  to   { background-position: 200% center; }
+}
+
+/* ===== Background word ===== */
+.partner-page .bg-text {
+  animation:
+    bgIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both,
+    bgFloat 8s ease-in-out 1.6s infinite alternate;
+}
+@keyframes bgIn {
+  from { opacity: 0; transform: translateX(-80px); letter-spacing: 0.3em; }
+  to   { opacity: 1; transform: none; letter-spacing: 0; }
+}
+@keyframes bgFloat { /* uses "translate" so it doesn't fight the entrance transform */
+  from { translate: 0 0; }
+  to   { translate: 30px -12px; }
+}
+
+/* ===== Cards: hidden until scrolled into view ===== */
+.partner-page .card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+  transition:
+    opacity 0.6s ease,
+    transform 0.7s cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 0.3s ease;
+}
+.partner-page .card.visible {
+  opacity: 1;
+  transform: none;
+  transition-delay: var(--d, 0ms);
+}
+/* after the entrance, remove the delay so hover feels instant */
+.partner-page .card.done {
+  transition-delay: 0s;
+  transition-duration: 0.6s, 0.3s, 0.3s;
+}
+@media (hover: hover) {
+  .partner-page .card.done:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 16px 30px -12px rgba(0, 104, 56, 0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-page h1,
+  .partner-page h1 span,
+  .partner-page .bg-text {
+    animation: none;
+  }
+  .partner-page .card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 footer {
   grid-area: footer;
   background: linear-gradient(
@@ -2242,6 +2519,42 @@ footer * {
 footer .copy-right,
 footer .teams {
   width: max-content;
+}
+/* ===== H1 animation on every section ===== */
+
+/* hidden until its section's container gets .animate */
+section .container h1,.home .container h2 {
+  opacity: 0;
+}
+
+section .container.animate h1,.home .container.animate h2 {
+  animation: titleIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* the highlighted span: slides up after the heading, then shimmers */
+section .container h1 span,.home .container h2 {
+  display: inline-block;
+  background: linear-gradient(90deg, #004d2b, #00a35c, #004d2b);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+section .container.animate h1 span,.home .container.animate h2 {
+  animation:
+    spanIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both,
+    shine 4s linear 1.2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section .container h1,
+  .home .container h2,
+  .home .container.animate h2,
+  section .container.animate h1,
+  section .container.animate h1 span {
+    opacity: 1;
+    animation: none;
+  }
 }
 
 /* =====================================================
