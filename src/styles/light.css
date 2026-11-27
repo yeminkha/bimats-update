@@ -2523,7 +2523,6 @@ main {
 
 .partner-page {
   width: 100%;
-  height: 100%;
   position: relative;
   background: linear-gradient(
     90deg,
@@ -2571,7 +2570,7 @@ main {
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  padding: 100px 0;
+  padding-top:100px;
 }
 .partner-page .cards-container {
   width: 100%;

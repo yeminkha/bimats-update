@@ -1,9 +1,21 @@
 ---
 import InnerLayout from "../layouts/InnerLayout.astro";
+import  Carousel from "../components/Carousel.astro";
+import  Contact  from "../components/Contact.astro";
+import  Connect from "../components/Connect.astro";
 ---
 
 <InnerLayout>
-  <section class="partner-page">
+      <section class="home service-details-home">
+    <div class="container">
+      <h1>Partners</h1>
+      <p>
+        <a href="/">Home</a> / <a href="/partner/#partner-page">About Us</a>
+      </p>
+    </div>
+  </section>
+  <Carousel/>
+  <section class="partner-page" id="partner-page">
     <div class="container">
       <h1>
         Powered by <br />
@@ -74,6 +86,8 @@ import InnerLayout from "../layouts/InnerLayout.astro";
       </div>
     </div>
   </section>
+  <Contact/>
+  <Connect/>
 </InnerLayout>
 <script>
   const cards = document.querySelectorAll<HTMLElement>(".partner-page .card");
