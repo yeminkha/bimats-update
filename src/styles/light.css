@@ -1352,7 +1352,7 @@ main {
   width: 30%;
   background-image:
     linear-gradient(rgba(10, 35, 22, 0.48), rgba(10, 35, 22, 0.48)),
-    url("/images/bg/wavy.jpg");
+    url("/images/bg/wavy-green.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -2781,7 +2781,7 @@ nav .links .mobile-only {
 }
 
 /* Big outlined background words scale with the screen */
-:is(.about, .service, .blogs, .choose-us, .contact, .teams, .award, .partner)
+:is(.about, .service, .blogs, .choose-us, .contact, .teams, .award, .partner,.partner-page)
   .bg-text {
   font-size: clamp(28px, 8vw, 100px);
   white-space: nowrap;
